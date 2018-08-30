@@ -1,28 +1,36 @@
 #include <stdio.h>
-#include <unistd.h>
-#include "progress.h"
+
+#ifdef _WIN32
+	#include <windows.h>
+	#define sleepms(X) (Sleep(X))
+#else
+	#include <unistd.h>
+	#define sleepms(X) usleep(X*1000)
+
+#endif
+
 #include <stdlib.h>
+#include "progress.h"
 
 #define PROCNR 4
 
 
 int main(void) {
-	unsigned int values;
+	unsigned int values = 0;
 	unsigned int prog[PROCNR];
 	unsigned int percent = 0;
 	unsigned int tempSignNr= 0;
 	char tempSign[4]={'-','\\','|','/'};
 	
-	
 	init_io();
 	
-	while(percent!=100){
+	while(values != 0xFFFFFFFF){
 		unsigned int valsum =0 ;
 
 		#ifdef DEBUG
 			wait_key();
 		#else
-			usleep(50000);
+			sleepms(50);
 		#endif
 		
 		values =  get_progress();

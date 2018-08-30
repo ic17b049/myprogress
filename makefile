@@ -49,28 +49,7 @@ myprogress: $(OBJECTS)
 	
 .PHONY: clean
 clean:
-	$(RM) -f *.o *~ myprogress	
-
-.PHONY: distclean
-distclean: clean
-	$(RM) -r doc
-
- doc: html pdf
-
-.PHONY: html
-html:
-	$(DOXYGEN) Doxyfile.dcf
-
-pdf: html
-	$(CD) doc/pdf && \
-	$(MV) refman.tex refman_save.tex && \
-	$(GREP) -v $(EXCLUDE_PATTERN) refman_save.tex > refman.tex && \
-	$(RM) refman_save.tex && \
-	make && \
-	$(MV) refman.pdf refman.save && \
-	$(RM) *.pdf *.html *.tex *.aux *.sty *.log *.eps *.out *.ind *.idx \
-	      *.ilg *.toc *.tps Makefile && \
-	$(MV) refman.save refman.pdf
+	$(RM) -f *.o *~ myprogress
 
 ##
 ## ---------------------------------------------------------- dependencies --
