@@ -1,7 +1,7 @@
 make all
-	kompliieren von myprogress
+	kompilieren von myprogress
 make debug
-	komplieren von myprogress mit DEBUG Switch
+	kompilieren von myprogress mit DEBUG Switch
 
 getestet:
 	Linux
